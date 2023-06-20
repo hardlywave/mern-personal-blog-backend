@@ -10,10 +10,10 @@ import {
 } from "./validations.js";
 import { UserController, PostController } from "./contollers/index.js";
 
-import link from "./utils/mongoDB.js";
+//import link from "./utils/mongoDB.js";
 
 mongoose
-  .connect(link.mongoDBConnection)
+  .connect(process.env.MONGODB_URI || link.mongoDBConnection)
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(("DB error: ", err)));
 
@@ -75,7 +75,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
   }
