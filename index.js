@@ -10,10 +10,10 @@ import {
 } from "./validations.js";
 import { UserController, PostController } from "./contollers/index.js";
 
-//import link from "./utils/mongoDB.js";
+import link from "./utils/mongoDB.js";
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI || link.mongoDBConnection)
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(("DB error: ", err)));
 
